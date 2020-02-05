@@ -1,0 +1,42 @@
+
+In het voorgaande hebben we maar marginaal aandacht besteed aan de relatie tussen 
+ruimte- of tijd-efficientie en de gevolgen daarvan op energiegebruik. 
+
+Een manier om te meten hoeveel werk een programma/berekening kost 
+is om te bepalen hoeveel tijd een processor op volle capaciteit (dus 100% belasting) 
+nodig heeft om de taak te volbrengen: dit noemen we ook wel process time of cpu time.
+
+Neem aan dat een moderne programmeeropdracht 1'000 uur 'process time' verbruikt.
+
+1) Als deze taak wordt uitgevoerd op een cluster computer die 1400 Watts (W) aan energie verbruikt, 
+   hoeveel energie verbruik je dan (in kilowatt-uur, of kWh) in totaal? 
+   
+   (1400 * 1000) / 1000 = 1400
+
+   Een rating van 40W voor een apparaat, betekent dat deze elke seconde 40 watt 
+   aan energie verbruikt; een apparaat met een verbruik van 40W, gebruikt dus ongeveer 1 kWh per dag.
+
+
+2) Een liter diesel bevat ongeveer 10kWh aan energie waarvan slechts 15% wordt gebruikt 
+   om de auto daadwerkelijk voort te bewegen. Als een gemiddelde dieselauto 20 km kan rijden 
+   op 1 liter diesel, hoeveel energie is er dan nodig om 475 km te rijden, ongeveer de afstand 
+   van Utrecht naar Parijs?
+
+   1L = 10kWh (15% van 10kWh = 1,5kWh)
+   20 km op 1L
+
+   475 / 20 = 23,75 liter
+   23,75L * 1,5kWh = 35,625 kwH energie 
+
+   En hoe vaak zou je op-en-neer kunnen als je de energie gebruikt die benodigd is om die taak 
+   van 1'000 uur process time te berekenen?  >> begrijp de vraag niet helemaal 
+
+   1000 uur process time = 1400 kWh
+   1400 / 35,625 = 39,30 afgerond op 2 decimalen
+
+
+3) Hoeveel liter diesel is er nodig om het cluster elk uur draaiend te houden?
+
+4) Neem aan dat je de taak efficient zou kunnen verdelen over vier processorkernen, 
+   waarmee je effectief de hoeveelheid process time kan reduceren tot één vierde (250 uur). 
+   Wat is dan de corresponderende afstand die je kan rijden met je dieselauto?
