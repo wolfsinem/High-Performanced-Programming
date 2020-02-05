@@ -22,7 +22,7 @@ Hoe lang heeft elk algoritme nodig om deze te sorteren?
 """
 # lijst_1 = list(random.sample(1000)) # 68472 function calls (66300 primitive calls) in 0.251 seconds
 # lijst_2 = list(random.sample(1000000))
-# lijst_3 = list(random.sample(1000000000))
+# lijst_3 = list(random.sample(1000000000)) # error
 
 """
 Genereer een (gesorteerde) lijst van 1'000'000 items. 
