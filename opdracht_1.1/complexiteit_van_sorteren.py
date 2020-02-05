@@ -45,4 +45,3 @@ Bepaal hiervoor 'best case', 'worst case' en 'average case' run time efficiënti
 Maakt het voor de complexiteit (Big O) van een algoritme uit of je 
 een iteratieve of een recursieve versie beschouwd?
 """
-
