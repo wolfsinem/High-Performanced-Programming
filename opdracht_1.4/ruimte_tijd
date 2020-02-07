@@ -10,33 +10,52 @@ Neem aan dat een moderne programmeeropdracht 1'000 uur 'process time' verbruikt.
 
 1) Als deze taak wordt uitgevoerd op een cluster computer die 1400 Watts (W) aan energie verbruikt, 
    hoeveel energie verbruik je dan (in kilowatt-uur, of kWh) in totaal? 
+
+   Een rating van 40W voor een apparaat, betekent dat deze elke seconde 40 Joulle (40 Watt) aan 
+   energie verbruikt; een apparaat met een verbruik van 40W, gebruikt dus ongeveer 1 kWh per dag.
+
+                E(kWh) = P(W) * t(uur) / 1000 
+
+                (1400 * 1000) / 1000 = 1400 kWh
+
+   ----------------------------------------
+   1 seconde =              1400 Watt 
+   60 seconde (1 minuut) =  84000 Watt 
+   3600 seconde (1 uur) =   5040000 Watt 
+   86400 seconde (1 dag) =  120960000 Watt
+
+   1000 uur =               1,8144e13
+   ----------------------------------------
    
-   (1400 * 1000) / 1000 = 1400
-
-   Een rating van 40W voor een apparaat, betekent dat deze elke seconde 40 watt 
-   aan energie verbruikt; een apparaat met een verbruik van 40W, gebruikt dus ongeveer 1 kWh per dag.
-
-
 2) Een liter diesel bevat ongeveer 10kWh aan energie waarvan slechts 15% wordt gebruikt 
    om de auto daadwerkelijk voort te bewegen. Als een gemiddelde dieselauto 20 km kan rijden 
    op 1 liter diesel, hoeveel energie is er dan nodig om 475 km te rijden, ongeveer de afstand 
    van Utrecht naar Parijs?
 
-   1L = 10kWh (15% van 10kWh = 1,5kWh)
-   20 km op 1L
+                1L = 10kWh (15% van 10kWh = 1,5kWh)
+                20 km op 1L
 
-   475 / 20 = 23,75 liter
-   23,75L * 1,5kWh = 35,625 kwH energie 
+                475 / 20 = 23,75 liter
+                23,75L * 1,5kWh = 35,625 kwH energie nodig om 475 km af te leggen
 
    En hoe vaak zou je op-en-neer kunnen als je de energie gebruikt die benodigd is om die taak 
-   van 1'000 uur process time te berekenen?  >> begrijp de vraag niet helemaal 
+   van 1'000 uur process time te berekenen?
 
-   1000 uur process time = 1400 kWh
-   1400 / 35,625 = 39,30 afgerond op 2 decimalen
-
+                1000 uur process time = 1400 kWh
+                1400 / 35,625 = 39,30 
+                39,30 / 2 = 19,65 
 
 3) Hoeveel liter diesel is er nodig om het cluster elk uur draaiend te houden?
+                
+                cluster verbruikt 1400 W aan energie 
+                (1400 * 1) / 1000 = 1,4 kWh per uur 
+
+                1L = 10kWh (15% van 10kWh =1,5kWh)
+                1,5 / 1,4 = 1,07 L 
 
 4) Neem aan dat je de taak efficient zou kunnen verdelen over vier processorkernen, 
    waarmee je effectief de hoeveelheid process time kan reduceren tot één vierde (250 uur). 
    Wat is dan de corresponderende afstand die je kan rijden met je dieselauto?
+
+                nieuwe process time = 250 uur
+                (1400 * 250) / 1000 = 350 kWh per uur
