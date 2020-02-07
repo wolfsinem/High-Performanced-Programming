@@ -51,7 +51,8 @@ Neem aan dat een moderne programmeeropdracht 1'000 uur 'process time' verbruikt.
                 (1400 * 1) / 1000 = 1,4 kWh per uur 
 
                 1L = 10kWh (15% van 10kWh =1,5kWh)
-                1,5 / 1,4 = 1,07 L 
+                
+                1/1,5*1.4 = 0.933
 
 4) Neem aan dat je de taak efficient zou kunnen verdelen over vier processorkernen, 
    waarmee je effectief de hoeveelheid process time kan reduceren tot één vierde (250 uur). 
@@ -59,3 +60,8 @@ Neem aan dat een moderne programmeeropdracht 1'000 uur 'process time' verbruikt.
 
                 nieuwe process time = 250 uur
                 (1400 * 250) / 1000 = 350 kWh per uur
+
+                1L diesel = 1,5kWh per 20 km 
+
+                350 / 1,5 = 233,33 liter 
+                233,33 * 20 = 4666,6 km
