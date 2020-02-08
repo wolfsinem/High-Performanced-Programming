@@ -19,48 +19,60 @@ Na de laatste gathering pass is de array gesorteerd.
 array index | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
 element     | n | . | . | . | . | . | . | . | . | . |
 
+ceil ( ( max ( lijst ) + 1 ) / bucket )
+
 Bron: https://www.growingwiththeweb.com/2015/06/bucket-sort.html
 """
 
-lijst = [random.randint(1,100) for x in range(10)] # array van 10 elementen
+def generate_random_list(num_steps):
+    lijst = [random.randint(1,100) for x in range(num_steps)]
+    return lijst
+
+lijst = generate_random_list(10)
 
 def bucket_sort(lijst,num_steps):
-    """get the right digit of an integer and store it in a new array"""
-    print(lijst)
-    last_element = []
+    """get the right-sided digit of an integer and store it in a new array"""
+    last_elements = []
     for i in lijst:
-        last_element.append(i % (10 ** 1))
-    print(last_element)
-    max_value = max(last_element)
-    min_value = min(last_element)
+        last_elements.append(i % (10 ** 1))
+    # print(lijst)
+    print(last_elements)
+
+    # max_value = max(lijst)
+    # min_value = min(lijst)
     # print(max_value)
 
-    """make 10 buckets in a dictionary in which the integers will be sorted, from 0 to 9"""
-    buckets = {i:[] for i in range(0,int(num_steps))}
+    """make 10 buckets in which the integers will be sorted, from 0 to 9"""
+    buckets = []
+    i = 0
+    while(i<num_steps):
+        buckets.append([])
+        i+=1
     print(buckets)
 
-    # for i in last_element:
-    #     for j in buckets:
-    #         if i == j:
-    #             buckets.append(i)
-    # value = next( v for i, v in enumerate(lijst.itervalues()) if i == index )
+    max_value = max(last_elements)
     
-    
-    """print key and values of dict"""
-    # for k, v in buckets.items():
-    #    print "%s: %s" % (k, v)
+    # for i in last_elements:
+    #     if 
+        
 
-bucket_sort(lijst,10)
 
-# arr[]
-# N = aantal elementen in de array
-# max = maximale waarde
-# min = minimale waarde
+    # for i in last_elements:
 
-# b = er zijn tien verschillende 'buckets', van 0 t/m 9. 
+# print(bucket_sort(lijst,10))
 
-# formule:
-# ceil ( ( max ( lijst ) + 1 ) / bucket )
 
-# b[j] = arr[i]
-# j = floor(arr[i]/divider)
+        # print(str(i) + " goes in " + str())
+
+# Bepaal, net als eerder, op basis van een test en door analyse, de Big O waarde van Bucket Sort.
+
+# Best case: 
+#     O(n+k), als de getallen in de lijst zo zijn gegenereerd dat er per bucket maar 1 getal voorkomt waardoor
+#     het eigenlijk al is gesorteerd en je per bucket niet meer hoeft te sorteren. 
+
+# Average case: 
+#     O(n+k), 
+
+# Worst case: 
+#     O(n^2), de worst case is wanneer de meeste getallen in de lijst bij elkaar in de zelfde bucket komen.
+#     Stel je hebt de getallen 12,22,32,42,52,62, dan komen ze allemaal in dezelfde bucket (2) en duurt het langer om te sorteren.
