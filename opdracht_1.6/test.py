@@ -4,33 +4,33 @@ from bucket_sort import generate_random_list
 import numpy as np
 import timeit
 
-def partitioning_step(lijst):
-    lijst_low = []
-    lijst_equal = [] 
-    lijst_high = [] 
-
-    if len(lijst) <2:
+def quick_sort(lijst):
+    # if there is only 1 element or 0, you need to stop the recursion
+    if len(lijst) < 2:
         return lijst
     
+    # select any index in the list to be the pivot such that all the elements less than the pivot 
+    # go to the left and the elements greater than the pivot go the the right.
     pivot = lijst[0]
     
-    for i in range(len(lijst)):
-        if lijst[i] < pivot:
-            lijst_low.append(lijst[i])
-        elif lijst[i] == pivot:
-            lijst_equal.append(lijst[i])
-        else:
-            lijst_high.append(lijst[i])
+    list_low = []
+    list_high = [] 
 
-    sorted_list = partitioning_step(lijst_low) + [pivot] + partitioning_step(lijst_high)
-    return sorted_list
-# print(partitioning_step(generate_random_list(10)))
+    """partitioning step"""
+    for number in lijst[1:]:
+        if number < pivot:
+            list_low.append(number)
+        else: 
+            list_high.append(number)
+            
+    return quick_sort(list_low) + [pivot] + quick_sort(list_high)
+# print(quick_sort(generate_random_list(10)))
 
 def timer(function):
     start_time = timeit.default_timer()
     function
     print('This algorithm took {:.10f} seconds'.format((timeit.default_timer() - start_time)))
-timer(partitioning_step(generate_random_list(600000)))
+# timer(quick_sort(generate_random_list(100)))
 
 
 """
