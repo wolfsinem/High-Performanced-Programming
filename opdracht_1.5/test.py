@@ -30,39 +30,31 @@ def generate_random_list(num_steps):
 
 lijst = generate_random_list(10)
 
-def bucket_sort(lijst,num_steps):
-    """get the right-sided digit of an integer and store it in a new array"""
-    last_elements = []
-    for i in lijst:
-        last_elements.append(i % (10 ** 1))
-    # print(lijst)
-    print(last_elements)
+num_steps = len(lijst)
+max_value = max(lijst)
 
-    # max_value = max(lijst)
-    # min_value = min(lijst)
-    # print(max_value)
+buckets_list = []
+i = 0
+while(i<num_steps):
+    buckets_list.append([])
+    i+=1
 
-    """make 10 buckets in which the integers will be sorted, from 0 to 9"""
-    buckets = []
-    i = 0
-    while(i<num_steps):
-        buckets.append([])
-        i+=1
-    print(buckets)
+"""distribution pass"""
+for i in lijst:
+    # for this algorithm we will sort the integers in the first round depending on its right index
+    right_index = i % (10 ** 1)
+    buckets_list[right_index].append(i)
 
-    max_value = max(last_elements)
-    
-    # for i in last_elements:
-    #     if 
-        
+print(buckets_list)
 
+"""gathering pass"""
+lijst = []
+for i in buckets_list:
+    for j in i:
+        lijst.append(j)
+print(lijst)
 
-    # for i in last_elements:
-
-# print(bucket_sort(lijst,10))
-
-
-        # print(str(i) + " goes in " + str())
+# print(str(i) + " goes in " + str())
 
 # Bepaal, net als eerder, op basis van een test en door analyse, de Big O waarde van Bucket Sort.
 
@@ -76,3 +68,5 @@ def bucket_sort(lijst,num_steps):
 # Worst case: 
 #     O(n^2), de worst case is wanneer de meeste getallen in de lijst bij elkaar in de zelfde bucket komen.
 #     Stel je hebt de getallen 12,22,32,42,52,62, dan komen ze allemaal in dezelfde bucket (2) en duurt het langer om te sorteren.
+
+
