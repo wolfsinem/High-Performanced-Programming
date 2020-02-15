@@ -84,7 +84,7 @@ if you loop in a range of 10 for 1.5 seconds, it would normally take 15 seconds 
 but with threads its finished in 1.51 seconds
 """
 
-## code will look like this 
+## code will look like this with threading
 # start = time.perf_counter
 
 # def hier_een_functie(seconds)
@@ -100,6 +100,27 @@ but with threads its finished in 1.51 seconds
 
 # for thread in threads:
 #     thread.join()
+
+# end = time.perf_counter
+# print('finished in {} seconds'.format(end-start))
+
+####################################################################
+
+# import concurrent.futures
+# start = time.perf_counter
+
+# def hier_een_functie(seconds)
+#     print('sleep {} sec'.format(seconds))
+#     time.sleep(seconds)
+#     return 'done sleeping..{seconds}'
+
+# with concurrent.futures.ThreadPoolExecutor() as executor:
+#     secs = [5, 4, 3, 2, 1]   
+#     results = [executor.submit(hier_een_functie, sec) for sec in secs]
+
+#     for f in concurrent.futures.as_completed(results):
+#           print(f.result())
+
 
 # end = time.perf_counter
 # print('finished in {} seconds'.format(end-start))
