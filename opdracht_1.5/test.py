@@ -70,3 +70,37 @@ print(lijst)
 #     Stel je hebt de getallen 12,22,32,42,52,62, dan komen ze allemaal in dezelfde bucket (2) en duurt het langer om te sorteren.
 
 
+# def bucket_sort(lijst,num_steps):
+#     """make 10 buckets in which the integers will be sorted, from 0 to 9"""
+#     buckets_list = []
+#     i = 0
+#     while(i<num_steps):
+#         buckets_list.append([])
+#         i+=1
+
+#     max_value = max(lijst)
+    
+#     """sort each item in list to bucket"""
+#     for i in lijst:
+#         num = (int(math.ceil((i/max_value)*len(buckets_list))))
+#         buckets_list[num-1].append(i)
+    
+#     out_bucket = [num for bucket in buckets_list for num in sorted(bucket)]
+    
+#     return out_bucket
+
+#         lijst = [j for bucket in generated_buckets for j in bucket]
+
+
+# lijst = [42,5,124,2]
+# for i in lijst:
+#     index = i // 10**(len(str(i))-1) % 10
+#     print(index)
+
+
+    """Distribution pass"""
+#     for i in lijst:
+#         # for this algorithm we will sort the integers in the first round depending on its right index
+#         index = i % (10 ** 1)
+#         buckets_list[index].append(i)
+#     print("List with filled buckets: {}".format(buckets_list))
