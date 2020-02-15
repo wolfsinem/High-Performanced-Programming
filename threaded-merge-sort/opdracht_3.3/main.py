@@ -72,6 +72,12 @@ Voeg aan de init van FakeDatabase het volgende toe:
 
 self._lock = threading.Lock()
 
+def functie():
+    global x 
+        lock.acquire()
+        for i in range(10):
+            x-=1
+        lock.release()
 ------------------------------------------------------------------------------------------------
 21:28:30: Testing update. Starting value is 0.
 21:28:30: Thread 0: starting update
