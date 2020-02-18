@@ -91,6 +91,8 @@ def merge_sort(xs: List[int]) -> None:
                     p, mid, q = p + 1, mid + 1, q + 1
 
         unit *= 2
+        
+    return xs 
 
 
 def merge_arrays(array1: List[int], array2: List[int]) -> List[int]:
