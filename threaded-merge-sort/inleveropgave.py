@@ -1,8 +1,14 @@
+import threading, logging, time
+import concurrent.futures
+from random import randint
 from typing import List
 # import sys
 # sys.path.append('/Users/wolfsinem/high-performanced-programming/functions')
 # from sort_functions import merge_sort
-
+def generate_array(size=8,max=20):
+    """Create an array of lenght 'size' containing random numbers from the range 0 up to 'max' """
+    return [randint(0,max) for _ in range(size)]
+    
 def merge_sort(xs: List[int]) -> None:
     """In place merge sort of array without recursive. The basic idea
     is to avoid the recursive call while using iterative solution.
@@ -17,6 +23,7 @@ def merge_sort(xs: List[int]) -> None:
             l, r = h, min(len(xs), h + 2 * unit)
             mid = h + unit
             # merge xs[h:h + 2 * unit]
+            
             p, q = l, mid
             while p < mid and q < r:
                 # use <= for stable merge merge
@@ -32,6 +39,5 @@ def merge_sort(xs: List[int]) -> None:
         
     return xs
 
-
-def multithreaded_merge_sort(xs: List[int]) -> None:
-    pass 
+# print(generate_array())
+# print(merge_sort(generate_array()))
