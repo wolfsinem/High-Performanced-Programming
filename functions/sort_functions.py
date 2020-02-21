@@ -64,7 +64,7 @@ def recursive_insertion(element: int, data: List[int]) -> List[int]:
             return [head] + recursive_insertion(element, tail) # else, keep the head separate, and recursively insert into the tail
 
 
-def merge_sort(xs: List[int]) -> None:
+def merge_sort2(xs: List[int]) -> None:
     """In place merge sort of array without recursive. The basic idea
     is to avoid the recursive call while using iterative solution.
     The algorithm first merge chunk of length of 2, then merge chunks
@@ -123,3 +123,42 @@ def recursive_merge_sort(data: List[int]) -> List[int]:
         middle = int(len(data)/2) # find the middle (round down if len(data) is odd)
         first, second = data[:middle], data[middle:] # split the list in half
         return merge_arrays(recursive_merge_sort(first), recursive_merge_sort(second)) # merge_sort both arrays, and merge them into the result
+
+
+def merge_sort(lijst: List[int]): 
+    """
+    Implementation of the Merge Sort Algortihm
+    Check threaded_merge_sort.png in folder "visuals" for further visual explanation.
+    This algorithm will be used for a new function with threads.
+    """
+
+    if len(lijst) > 1: 
+
+        left = lijst[:num_lijst//2]
+        right = lijst[num_lijst//2:]
+
+        merge_sort(left)
+        merge_sort(right)
+
+        i = 0
+        j = 0
+        k = 0
+        
+        while i < len(left) and j < len(right): 
+            if left[i] < right[j]: 
+                lijst[k] = left[i] 
+                i+=1
+            else: 
+                lijst[k] = right[j] 
+                j+=1
+            k+=1
+        
+        while i < len(left): 
+            lijst[k] = left[i] 
+            i+=1
+            k+=1
+        
+        while j < len(right): 
+            lijst[k] = right[j] 
+            j+=1
+            k+=1
