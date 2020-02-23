@@ -1,11 +1,9 @@
-from timeit import default_timer as timer
-import threading, logging
 from random import randint
-from typing import List
 import multiprocessing
-import numpy as np 
 import math
-
+from timeit import default_timer as timer
+from typing import List
+import matplotlib.pyplot as plt
 
 """
 Merge sort is een efficient sorteeralgoritme. Dit algoritme neemt een array, 
@@ -36,32 +34,35 @@ def merge_sort(lijst: List[int]):
     if len(lijst) <=1: 
         return lijst
 
-    left = merge_sort(lijst[:len(lijst) // 2 ])
-    right = merge_sort(lijst[len(lijst) // 2:])
+    left = merge_sort(lijst[:int(len(lijst)/2)])
+    right = merge_sort(lijst[int(len(lijst)/2):])
 
     return merge(left,right)
 
 
-def merge(left: int, right: int):
+def merge(*args):
     """Merge the sublists"""
-    lijst = []
     
+    new_lijst = []
+    
+    left, right = args[0] if len(args) == 1 else args
+
     l=0
     r=0
     
     while l < len(left) and r < len(right):
         if left[l] <= right[r]:
-            lijst.append(left[l])
+            new_lijst.append(left[l])
             l += 1
         else:
-            lijst.append(right[r])
+            new_lijst.append(right[r])
             r += 1
     if l == len(left):
-        lijst.extend(right[r:])
+        new_lijst.extend(right[r:])
     else:
-        lijst.extend(left[l:])
+        new_lijst.extend(left[l:])
     
-    return lijst
+    return new_lijst
 
 
 def split_for_threading(lijst: List[int], processes: int):
@@ -71,52 +72,70 @@ def split_for_threading(lijst: List[int], processes: int):
     Var split: divides the list by the amount of processes 
     """
     split = int(math.ceil(float(len(lijst)) / processes))
-    splitted_list = [lijst[i * split:(i + 1) * split] for i in range(processes)]
+    split_list = [lijst[i * split:(i + 1) * split] for i in range(processes)]
     
-    return splitted_list
+    full_list = []
+    for i in split_list:
+        if i != []:
+            full_list.append(i)
+            
+    return full_list
 
 
 def parallel_merge_sort(lijst: List[int], processes: int):
     """
     The pool object offers parallelization of the merge sort
     function. 
+    https://docs.python.org/2/library/multiprocessing.html
     """
     pool = multiprocessing.Pool(processes=processes)
+
     splitted_list = split_for_threading(lijst,processes)
-    
     lijst = pool.map(merge_sort, splitted_list)
 
     while len(lijst) > 1:
+        extra = lijst.pop() if len(lijst) % 2 == 1 else None
+        lijst = [(lijst[i], lijst[i + 1]) for i in range(0, len(lijst), 2)]
+        lijst = lijst = pool.map(merge,lijst) + ([extra] if extra else [])
 
-        if len(lijst) % 2 == 1:
-            extra = lijst.pop() 
-        else: None
+        return lijst[0]
 
-        for i in range(0, len(lijst), 2):
-            lijst = (lijst[i], lijst[i + 1])
+
+def set_time(lijst: List[int], processes: int):
+    """
+    Function that measures the execution time for
+    each choosen amount of processors
+    """
+    results = []
+
+    for i in processes:
+        start_time = timer()
+        sort_process = parallel_merge_sort(lijst,i)
+        end_time = timer()
+        duration = end_time - start_time
         
-        lijst = pool.map(merge,lijst) + ([extra] if extra else [])
+        results.append(duration)
+        print('Parallel Merge Sort with {} process(es) took {:.4f} second(s)'.format(i,duration))
+    return results
 
-    return lijst[0]
+def plot_me(processes: List[int], result: List[int]):
+    """
+    Plot all the results of the time execution
+    using the matplotlib library
+    """
+    plt.scatter(processes, result, label=f"Processes: {processes}; Duration: {result}")
+    plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left', borderaxespad=0.)
+    plt.savefig('parallel_programming_merge_sort.png')
+    plt.show()
 
-
-def set_time(function,list_):
-    """function that can be used for each algorithm to measure the execution time"""
-    for i in list_:
-        start_time = timeit.default_timer()
-        function(i)
-        print('This algorithm took {:.4f} seconds'.format((timeit.default_timer() - start_time)))
 
 if __name__ == "__main__":
-    print("Multiprocessed Merge Sort Algorithm")
-    process_amount = multiprocessing.cpu_count()
-    print("Number of processors available on your system: {}".format(str(process_amount)))
-    
-    num_processes = [1,2,4] # my system has a maximum of 4 processes 
+    # process_amount = multiprocessing.cpu_count()
+    # print("Number of processors available on your system: {}".format(str(process_amount)))
 
-    list_to_be_sorted = generate_array() # size = 8, max = 20
-    start_time = timer()
-    sort_process = parallel_merge_sort(list_to_be_sorted,2) # lijst, processes
-    end_time = timer()
-    duration = end_time - start_time
-    print("The parallel merge sort function took {} second(s)".format(duration))
+    processes = [1,2,4]
+    list_to_be_sorted = generate_array() # default size = 8, max = 20
+    set_time(list_to_be_sorted,processes)           # lijst, processes 
+    
+    resultaten = set_time(list_to_be_sorted,processes)
+    plot_me(processes,resultaten)
