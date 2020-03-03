@@ -5,8 +5,8 @@
  *
  * Huib Aldewereld, HU, HPP, 2020
  *
- * Compile by: gcc -fopenmp -o forkJoin2 forkJoin2.c
- *
+ * Compile by: gcc-9 -fopenmp -o forkJoin2 forkJoin2.c
+ *                  gcc-9 = version brew install
  * Usage: ./forkJoin2
  *
  * Exercise:
