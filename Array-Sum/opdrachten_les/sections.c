@@ -3,7 +3,7 @@
  *
  * Huib Aldewereld, HU, HPP, 2020
  *
- * Compile by: gcc -o sections -fopenmp sections.c
+ * Compile by: gcc-9 -o sections -fopenmp sections.c
  * Usage: ./sections
  * Exercise:
  * - Compile and run, trace execution by
@@ -47,3 +47,12 @@ int main(int argc, char** argv) {
     return 0;
 }
 
+// output:
+// Before...
+
+// Section B performed by thread 0
+// Section A performed by thread 2
+// Section D performed by thread 1
+// Section C performed by thread 0
+
+// After...

@@ -4,7 +4,7 @@
  *
  * Huib Aldewereld, HU, HPP, 2020
  *
- * Compile by: gcc -o barrier -fopenmp barrier.c
+ * Compile by: gcc-9 -o barrier -fopenmp barrier.c
  * Usage: ./barrier [numThreads]
  * 
  * Exercise:
@@ -12,8 +12,6 @@
  * - Uncomment the barrier directive, recompile, rerun,
  *   and note the change in the outputs.
  */
-
-
 
 #include <stdio.h>
 #include <omp.h>
@@ -31,7 +29,7 @@ int main(int argc, char** argv) {
         int numThreads = omp_get_num_threads();
         printf("Thread %d of %d is BEFORE the barrier.\n", id, numThreads);
 
-//        #pragma omp barrier 
+       #pragma omp barrier 
 
         printf("Thread %d of %d is AFTER the barrier.\n", id, numThreads);
     }

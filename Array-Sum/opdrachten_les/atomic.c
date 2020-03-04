@@ -4,7 +4,7 @@
  *
  * Huib Aldewereld, HU, HPP, 2020
  *
- * Compile by: gcc -o atomic -fopenmp atomic.c
+ * Compile by: gcc-9 -o atomic -fopenmp atomic.c
  * Usage: ./atomic
  *
  * Exercise:
@@ -25,10 +25,10 @@ int main() {
     printf("\nYour starting bank account balance is %0.2f\n", balance);
 
     // simulate many deposits
-//    #pragma omp parallel for                      // A1
+   #pragma omp parallel for                      // A1
 //    #pragma omp parallel for private(balance)     // B1
     for (i = 0; i < REPS; i++) {
-//        #pragma omp atomic                        // C1
+       #pragma omp atomic                        // C1
         balance += 10.0;
     }
 
@@ -36,10 +36,10 @@ int main() {
 		REPS, balance);
 
     // simulate the same number of withdrawals
-//    #pragma omp parallel for                      // A2
+   #pragma omp parallel for                      // A2
 //    #pragma omp parallel for private(balance)     // B2
     for (i = 0; i < REPS; i++) {
-//        #pragma omp atomic                        // C2
+       #pragma omp atomic                        // C2
         balance -= 10.0;
     }
 
@@ -50,3 +50,22 @@ int main() {
     return 0;
 }
 
+// first output: 
+// Your starting bank account balance is 0.00
+// After 1000000 $10 deposits, your balance is 10000000.00
+// After 1000000 $10 withdrawals, your balance is 0.00
+
+// uncomment A1 + A2 
+// Your starting bank account balance is 0.00
+// After 1000000 $10 deposits, your balance is 3857450.00
+// After 1000000 $10 withdrawals, your balance is -1262840.00
+
+// try 1: recomment A1+A2, uncomment B1+B2
+// Your starting bank account balance is 0.00
+// After 1000000 $10 deposits, your balance is 0.00
+// After 1000000 $10 withdrawals, your balance is 0.00
+
+// To fix: recomment B1+B2, uncomment A1+A2, C1+C2
+// Your starting bank account balance is 0.00
+// After 1000000 $10 deposits, your balance is 10000000.00
+// After 1000000 $10 withdrawals, your balance is 0.00

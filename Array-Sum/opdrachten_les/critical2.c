@@ -3,8 +3,8 @@
  *
  * Huib Aldewereld, HU, HPP, 2020
  *
- * Compile by: gcc -o critical2 -fopenmp critical2.c
- * Usage: ./critical
+ * Compile by: gcc-9 -o critical2 -fopenmp critical2.c
+ * Usage: ./critical2
  *
  * Exercise:
  *  - Compile, run, compare times for critical vs. atomic
@@ -62,3 +62,16 @@ int main() {
     return 0;
 }
 
+// first run:
+// Your starting bank account balance is 0.00
+
+// After 1000000 $10 deposits using 'atomic':             
+//         - balance = 10000000.00,             
+//         - total time = 0.041253000003,             
+//         - average time per deposit = 0.000000041253
+
+
+// After 1000000 $10 deposits using 'critical':             
+//         - balance = 10000000.00,             
+//         - total time = 0.058099000002,             
+//         - average time per deposit = 0.000000058099

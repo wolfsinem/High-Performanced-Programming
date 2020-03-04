@@ -5,7 +5,7 @@
  *
  * Huib Aldewereld, HU, HPP, 2020
  *
- * Compile by: gcc -o parallelForBlocks -fopenmp parallelForBlocks.c
+ * Compile by: gcc-9 -o parallelForBlocks -fopenmp parallelForBlocks.c
  * Usage: ./parallelForBlocks [numThreads]
  *
  * Exercise
@@ -36,4 +36,14 @@ int main(int argc, char** argv) {
     return 0;
 }
 
+// threads 3
+//
+// Thread 1 performed iteration 3
+// Thread 1 performed iteration 4
+// Thread 2 performed iteration 6
+// Thread 2 performed iteration 7
+// Thread 0 performed iteration 0
+// Thread 0 performed iteration 1
+// Thread 0 performed iteration 2
+// Thread 1 performed iteration 5
 

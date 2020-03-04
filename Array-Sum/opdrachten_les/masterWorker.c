@@ -3,7 +3,7 @@
  *
  * Huib Aldewereld, HU, HPP, 2020
  *
- * Compile by: gcc -o masterWorker -fopenmp masterWorker.c
+ * Compile by: gcc-9 -o masterWorker -fopenmp masterWorker.c
  * Usage: ./masterWorker
  *
  * Exercise: 
@@ -20,7 +20,7 @@ int main(int argc, char** argv) {
 
     printf("\n");
 
-//    #pragma omp parallel private(id, numThreads)
+   #pragma omp parallel private(id, numThreads)
     {
         id = omp_get_thread_num();
         numThreads = omp_get_num_threads();
@@ -39,4 +39,11 @@ int main(int argc, char** argv) {
     return 0;
 }
 
+// output: before #pragma directive 
+// Greetings from the master, # 0 of 1 threads
 
+// output: after #pragma directive
+// Greetings from the master, # 0 of 4 threads
+// Greetings from a worker, # 1 of 4 threads
+// Greetings from a worker, # 2 of 4 threads
+// Greetings from a worker, # 3 of 4 threads

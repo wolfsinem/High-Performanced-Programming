@@ -3,7 +3,7 @@
  *
  * Huib Aldewereld, HU, HPP, 2020
  *
- * Compile by: gcc -o private -fopenmp private.c
+ * Compile by: gcc-9 -o private -fopenmp private.c
  * Usage: ./private 
  *
  * Exercise: 
@@ -25,7 +25,7 @@ int main(int argc, char** argv) {
     printf("\n");
     // set all array entries to 1
 //    #pragma omp parallel for                     // A
-//    #pragma omp parallel for private(j)          // B
+   #pragma omp parallel for private(j)          // B
     for (i = 0; i < SIZE; i++) {
         for (j = 0; j < SIZE; j++) {
             m[i][j] = 1;
@@ -49,3 +49,6 @@ int main(int argc, char** argv) {
     return 0;
 }
 
+// first output: All elements correctly set to 1
+// uncomment line A: Element [87,99] not set...  etc
+// uncomment line B: All elements correctly set to 1 

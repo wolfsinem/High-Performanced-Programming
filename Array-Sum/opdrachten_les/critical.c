@@ -4,7 +4,7 @@
  *
  * Huib Aldewereld, HU, HPP, 2020
  *
- * Compile by: gcc -o critical -fopenmp critical.c
+ * Compile by: gcc-9 -o critical -fopenmp critical.c
  * Usage: ./critical
  *
  * Exercise:
@@ -26,11 +26,11 @@ int main() {
     // simulate many deposits
     #pragma omp parallel for
     for (i = 0; i < REPS; i++) {
-        #pragma omp atomic                          // A1
-//        #pragma omp critical                      // B1a
-//        {                                         // B1b
+        // #pragma omp atomic                          // A1
+       #pragma omp critical                      // B1a
+       {                                         // B1b
         balance += 10.0;
-//        }                                         // B1c
+       }                                         // B1c
     }
 
     printf("\nAfter %d $10 deposits, your balance is %0.2f\n", 
@@ -39,11 +39,11 @@ int main() {
     // simulate the same number of withdrawals
     #pragma omp parallel for
     for (i = 0; i < REPS; i++) {
-        #pragma omp atomic                          // A2
-//        #pragma omp critical                      // B2a
-//        {                                         // B2b
+        // #pragma omp atomic                          // A2
+       #pragma omp critical                      // B2a
+       {                                         // B2b
         balance -= 10.0;
-//        }                                         // B2c
+       }                                         // B2c
   }
 
     // balance should be zero
@@ -53,3 +53,7 @@ int main() {
     return 0;
 }
 
+// fixed
+// Your starting bank account balance is 0.00
+// After 1000000 $10 deposits, your balance is 10000000.00
+// After 1000000 $10 withdrawals, your balance is 0.00

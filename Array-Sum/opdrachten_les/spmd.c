@@ -5,7 +5,7 @@
  *
  * Huib Aldewereld, HU, HPP, 2020
  *
- * Compile by: gcc -o spmd -fopenmp spmd.c
+ * Compile by: gcc-9 -o spmd -fopenmp spmd.c
  * Usage: ./spmd [numThreads]
  *
  * Exercise:
@@ -28,7 +28,7 @@ int main(int argc, char** argv) {
         omp_set_num_threads( atoi(argv[1]) );
     }
 
-    #pragma omp parallel // private(id)
+    #pragma omp parallel private(id)
     {
         id = omp_get_thread_num();
         numThreads = omp_get_num_threads();

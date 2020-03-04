@@ -3,7 +3,7 @@
  *
  * Huib Aldewereld, HU, HPP, 2020
  *
- * Compile by: gcc -o reduction -fopenmp reduction.c
+ * Compile by: gcc-9 -o reduction -fopenmp reduction.c
  * Usage: ./reduction 
  *
  * Exercise:
@@ -58,11 +58,25 @@ int sequentialSum(int* a, int n) {
 int parallelSum(int* a, int n) {
    int sum = 0;
    int i;
-//   #pragma omp parallel for // reduction(+:sum)
+  #pragma omp parallel for reduction(+:sum)
    for (i = 0; i < n; i++) {
       sum += a[i];
    }
    return sum;
 }
+
+
+// first output
+// Sequential:     499079147
+// Parallel:       499079147
+
+// pragma parallelsum for
+// Sequential:     499079147
+// Parallel:       137661030
+
+// pragma parallelsum for reduction(+:sum)
+// Sequential:     499079147
+// Parallel:       499079147
+
 
 
