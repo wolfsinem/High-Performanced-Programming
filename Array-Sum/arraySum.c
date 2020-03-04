@@ -1,10 +1,13 @@
 /* arraySum.c uses an array to sum the values in an input file,
  *  whose name is specified on the command-line.
  * Huib Aldewereld, HU, HPP, 2020
+ * 
+ * gcc-9 -fopenmp -o main arraySum.c 
  */
 
 #include <stdio.h>      /* I/O stuff */
 #include <stdlib.h>     /* calloc, etc. */
+#include <omp.h>
 
 void readArray(char * fileName, double ** a, int * n);
 double sumArray(double * a, int numValues) ;
@@ -21,10 +24,17 @@ int main(int argc, char * argv[])
   }
   
   readArray(argv[1], &a, &howMany);
+
+  double start = omp_get_wtime();
+  
   sum = sumArray(a, howMany);
+  
+  double end = omp_get_wtime();
+  printf("Elasped time = %f sec\n", end - start);
+
   printf("The sum of the values in the input file '%s' is %g\n",
            argv[1], sum);
-
+  
   free(a);
 
   return 0;
