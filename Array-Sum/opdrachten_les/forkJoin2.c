@@ -22,26 +22,26 @@ int main(int argc, char** argv) {
 
     printf("\nBeginning\n");
 
-    #pragma omp parallel 
+    #pragma omp parallel // 4 times
     printf("\nPart I");
 
     printf("\n\nBetween I and II...\n");
 
     omp_set_num_threads(3);
 
-    #pragma omp parallel 
+    #pragma omp parallel // 3 times because omp is set to 3 threads
     printf("\nPart II...");
 
     printf("\n\nBetween II and III...\n");
 
     #pragma omp parallel num_threads(5)
     printf("\nPart III...");
-/*
+
     printf("\n\nBetween III and IV...\n");
 
     #pragma omp parallel 
     printf("\nPart IV...");
-*/
+
     printf("\n\nEnd\n\n");
 
     return 0;

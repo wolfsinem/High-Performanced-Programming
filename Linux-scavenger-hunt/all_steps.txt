@@ -1,0 +1,165 @@
+Opdracht 2.1: Linux Scavenger Hunt
+
+./generate_clues.py ‘sinem.ertem@student.hu.nl’
+>> 331444848437…..6508
+
+cd ~ verwijdt naar de thuismap van de huidige gebruiker
+pwd  = print working directory, in welke dir bevindt je je? 
+ls = list files
+ls -l 
+
+
+$ > home > wolf > 
+$ > usr > 
+
+‘/usr’ -> aantal mappen = 9 
+studentnummer = 1748884
+
+bestanden
+	- te lezen als tekst = human readable
+	- binary = machine readable
+
+standaard map met binary executables >> ‘/bin’
+>> ls /bin (zo kun je ls doen zonder jezelf te verplaatsen naar de bin map) 
+
+
+/etc
+tekstbestanden die de configuratie van het systeem vastleggen
+/etc/fstab 
+
+een map maken
+mkdir saved-clues 
+
+move/rename files
+mv saved-clues [new name] 
+
+mv overwriting 
+-i overschrijving tegengaan 
+
+
+
+“ echo hello “ echo commando herhaalt wat er wordt gezegd 
+je kunt echo gebruiken om een bestand te maken door de uitvoer niet naar de terminal te sturen
+
+je kan het ook gebruiken om de inhoud van een variabelen te zien
+	echo $PATH
+	echo $HOME
+
+echo never gonna give you up > sinem.txt
+dit > symbool heet redirect en in het txt bestand staat precies wat je met echo commando hebt aangeroepen. 
+
+
+ls > index.txt 
+
+PATH
+	- wich —> zien waar een programma daadwerkelijk staat 
+	- which mv
+		/bin/mv —> dus mv staat in bin 
+
+commandos die ingebouwd zijn in Bash kun je niet vinden met which, zoals cd 
+
+root is de gebruiker van het systeem 
+super user kan niet zomaar software aanpassen
+als je iets wilt uitvoeren met de rechten van de super user kun je commando sudo gebruiken 
+
+	sudo apt-get install cowsay 
+	zonder sudo krijg je een foutmelding
+
+wc = word count
+
+grep  = gnu regular expression parsing
+GNU is een organisatie die voor een deel verantwoordelijk is voor de linux omgeving
+
+sorting
+-r reverse order c-b-a 
+-n numerically 1-2-3 
+
+-nr numeric data in reverse order 3-2-1
+-k select column “-k 5” sort on the fifth column 
+
+-k 5 -n -r 
+
+taakbeheer
+	-ps = process status 
+	geeft een lijst van allle processen binnen huidige terminal
+	- ps a
+	lijst met alle processen 
+	- PID = process ID 
+
+	- KILL
+	stoppen van een process 
+	SIGTERM signaal = beleeft verzoek om te stoppen
+
+	- TUI programma top 
+	terminal user interface 
+
+
+echo > main.cc << EOF
+<regels met code>
+EOF 
+
+
+
+om bestanden te kopieren
+>> cp clues/12345/clue saved-clues/clue2
+>> cp clues/32848/clue saved-clues/clue3
+>> cp clues/26919/clue saved-clues/clue4
+>> cp clues/04397/clue saved-clues/clue5
+
+./next_clue.py sinem.ertem@student.hu.nl     volgende clue     antwoord
+
+
+——— volgorde ——— 
+>> /clues/ cd 12345
+>> ./next_clue.py “sinem.ertem@student.hu.nl” 3 9 
+>> /clues/ cd 32848 
+>> etc / cd hostname 
+>> wolf-VirtualBox —> ./next_clue.py sinem.ertem@student.hu.nl 4 wolf-VirtualBox
+>> 26919
+>> ./next_clue.py sinem.ertem@student.hu.nl 5 “-i”
+>> 04397
+>> /usr/local/sbin
+>> 64118
+>> which python3 
+>> /usr/bin/python3
+>> 78531
+>> “tracing” 
+>> 66036
+>> wc -l /usr/share/dict/words 
+>> 102305 = aantal woorden
+>> 86181 
+>> grep -A 1 tactics /usr/share/dict/words
+>> tactile
+>> 42279
+>> -k 5 -n -r
+>> 52888
+>> ps -a
+>> ps -p 1 
+>> de naam van CMD = systemd 
+>> 56716
+>> echo > main.cc << EOF
+	c++ code
+   EOF
+>> g++ -std=c++ -o main main.cc
+>> ./main
+>> regenboogkleur AARDWOLF
+>> 70731
+>> zoek de laatste clue
+>> find . -type f -depth | xargs grep “Gefeliciteerd”
+>> Je hebt de scavenger hunt voltooid: lever de code 2739f55d4374eb928ae482e091f888774 op canvas in om te bewijzen dat je het einde gehaald hebt. 
+
+ALLE CLUES: 
+1	12345 
+2	32848 
+3	26919
+4	04397
+5	64118
+6	78531
+7	66036
+8	86181
+9	42279
+10	52888
+11	56716
+12	70731
+13	02418
+
