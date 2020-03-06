@@ -39,4 +39,18 @@ int main(int argc, char** argv) {
     return 0;
 }
 
+// 1 thread
+// Hello from thread 0 of 1
 
+// 4 threads 
+// Hello from thread 1 of 4
+// Hello from thread 1 of 4
+// Hello from thread 0 of 4
+// Hello from thread 2 of 4
+
+// without args
+// = default 4 threads
+
+// uncomment private(id)
+// 	- compare results
+// 	- can’t notice any difference

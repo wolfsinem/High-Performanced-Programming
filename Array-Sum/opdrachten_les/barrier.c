@@ -38,4 +38,23 @@ int main(int argc, char** argv) {
     return 0;
 }
 
+// 1 thread
+// Thread 0 of 1 is BEFORE the barrier.
+// Thread 0 of 1 is AFTER the barrier.
 
+// 2 threads
+// Thread 1 of 2 is BEFORE the barrier.
+// Thread 1 of 2 is AFTER the barrier.
+// Thread 0 of 2 is BEFORE the barrier.
+// Thread 0 of 2 is AFTER the barrier.
+
+// <<< with pragma omp parallel >>>
+
+// 2 threads
+// Thread 0 of 2 is BEFORE the barrier.
+// Thread 1 of 2 is BEFORE the barrier.
+// Thread 0 of 2 is AFTER the barrier.
+// Thread 1 of 2 is AFTER the barrier.
+
+// note: when using pragma omp parallel every thread will print the "BEFORE" statement first
+    //   and the "AFTER" statement just how it should be. BEFORE comes before.. 
