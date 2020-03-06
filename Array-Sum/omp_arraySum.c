@@ -1,22 +1,30 @@
-/* omp_arraySum.c uses OpenMP to sum the values in an input file,
+/*  omp_arraySum.c uses OpenMP to sum the values in an input file,
  *  whose name is specified on the command-line.
- * 
- * 
- * gcc-9 -fopenmp -o main arraySum.c 
+ *  
+ *  Based on arraySum.c - Huib Aldewereld
+ *  
+ *  compile gcc-9 -fopenmp -o main arraySum.c 
+ *  run ./main
  */
 
 #include <stdio.h>      /* I/O stuff */
 #include <stdlib.h>     /* calloc, etc. */
-#include <omp.h>
+#include <omp.h>        /* OpenMP */
 
-void readArray(char * fileName, double ** a, int * n);
-double sumArray(double * a, int numValues) ;
+void readArray(char * fileName, 
+               double ** a, 
+               int * n);
+
+double parallelSumArray(double * a,
+                int numValues);
 
 int main(int argc, char * argv[])
 {
   int  howMany;
   double sum;
   double * a;
+  double start; // start elapsed wall clock time in seconds 
+  double end; // end elapsed wall clock time in seconds
 
   if (argc != 2) {
     fprintf(stderr, "\n*** Usage: arraySum <inputFile>\n\n");
@@ -25,18 +33,15 @@ int main(int argc, char * argv[])
   
   readArray(argv[1], &a, &howMany);
 
-  double start = omp_get_wtime();
-  
-  sum = sumArray(a, howMany);
-  
-  double end = omp_get_wtime();
-  printf("Elasped time = %f sec\n", end - start);
+  start = omp_get_wtime(); 
+  sum = parallelSumArray(a, howMany);
+  end = omp_get_wtime();
 
+  printf("Elasped time = %f sec\n", end - start);
   printf("The sum of the values in the input file '%s' is %g\n",
            argv[1], sum);
   
   free(a);
-
   return 0;
 }
 
@@ -79,20 +84,20 @@ void readArray(char * fileName, double ** a, int * n) {
   *a = tempA;
 }
 
-/* sumArray sums the values in an array of doubles.
+/* parallelSumArray sums the values in an array of doubles.
  * Receive: a, a pointer to the head of an array;
  *          numValues, the number of values in the array.
  * Return: the sum of the values in the array.
  */
 
-double sumArray(double * a, int numValues) {
+double parallelSumArray(double * a, int numValues) {
   int i;
   double result = 0.0;
 
+  #pragma omp parallel for reduction(+:result) // reduction.c 
   for (i = 0; i < numValues; i++) {
     result += a[i];
   }
 
   return result;
 }
-
