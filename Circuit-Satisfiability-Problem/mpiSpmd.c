@@ -4,8 +4,10 @@
  *
  * Huib Aldewereld, HU, HPP, 2020
  *
- * Compile by: mpicc -o spmd spmd.c
+ * Compile by: mpicc -o spmd mpispmd.c
  * Usage: mpirun -np 4 ./spmd
+ *
+ * brew install openmpi on mac 
  */
 
 #include <stdio.h>
@@ -27,4 +29,12 @@ int main(int argc, char** argv) {
 	return 0;
 }
 
-
+/* output
+ * Greetings from process 0 of 1 on mbp-van-sinem.home
+ * Greetings from process 1 of 2 on mbp-van-sinem.home
+ * PMIX ERROR: ERROR in file gds_ds12_lock_pthread.c at line 206
+ * 
+ * There are not enough slots available in the system to satisfy the 4 
+ * slots that were requested by the application:
+ * 				./spmd
+ */

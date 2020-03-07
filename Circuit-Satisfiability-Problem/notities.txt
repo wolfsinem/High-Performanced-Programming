@@ -1,0 +1,51 @@
+ ---------
+| THEORIE |
+ ---------
+ 
+Om een MPI-programma in parallel te draaien op meerdere workstations
+(of meerdere nodes van een cluster), gebruik je het mpirun commando:
+        
+        - mpirun -np numProcesses -machinefile hostNameFile binaryFileName
+
+Om nu (zonder toegang tot een cluster) je MPI-programma lokaal te draaien, type je echter:
+        
+        - mpirun -np 4 ./spmd
+
+Dit start 4 threads op je lokale machine om het programma uit te voeren.
+
+
+
+
+
+
+ --------
+| VRAGEN |
+ --------
+
+5.1 
+SPMD staat voor Single Program Multiple Data; spmd.c is duidelijk een single program, 
+maar wat is de multiple data die door de processen wordt gebruikt?  
+
+
+
+
+
+-------------------------------------------------------------------------------------------
+5.2.1 slicing
+Als er P processen zijn en N iteraties (P < N), welke stappen van de iteratie voert process
+0 dan uit? En welke process 1?
+
+
+
+
+
+-------------------------------------------------------------------------------------------
+5.2.2 chunks
+Als er P processen zijn en N iteraties (P < N); welke stappen van de iteratie worden in de 
+chunks methode dan uitgevoerd door process 0? En door process 1?
+
+
+-------------------------------------------------------------------------------------------
+5.3 
+Hoe verschilt het masterWorker.c programma zich van het spmd.c programma?
+
