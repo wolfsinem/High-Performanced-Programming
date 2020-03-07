@@ -3,7 +3,7 @@
  *  
  *  Based on arraySum.c - Huib Aldewereld
  *  
- *  compile gcc-9 -fopenmp -o main arraySum.c 
+ *  compile gcc-9 -fopenmp -o main omp_arraySum.c 
  *  run ./main
  */
 
@@ -26,23 +26,36 @@ int main(int argc, char * argv[])
   double start; // start elapsed wall clock time in seconds 
   double end; // end elapsed wall clock time in seconds
 
+  // int nThreads = omp_get_max_threads(); // returns an upper bound on the number of threads
+  int threads[] = {1,2,4,8};
+  int sizeT = sizeof(threads)/sizeof(threads[0]);
+  printf("Size of list with threads: %d\n", sizeT);
+
   if (argc != 2) {
     fprintf(stderr, "\n*** Usage: arraySum <inputFile>\n\n");
     exit(1);
   }
   
   readArray(argv[1], &a, &howMany);
-
-  start = omp_get_wtime(); 
-  sum = parallelSumArray(a, howMany);
-  end = omp_get_wtime();
-
-  printf("Elasped time = %f sec\n", end - start);
-  printf("The sum of the values in the input file '%s' is %g\n",
-           argv[1], sum);
   
+  for (int i = 0; i < sizeT; i++) {
+      omp_set_num_threads(threads[i]);
+
+      #pragma omp parallel
+
+      start = omp_get_wtime(); 
+      sum = parallelSumArray(a, howMany);
+      end = omp_get_wtime();
+
+      printf("Elasped time = %f seconds using %d thread(s)\n", end - start,threads[i]);
+  // printf("The sum of the values in the input file '%s' is %g\n",argv[1], sum);
+  
+  } 
+
   free(a);
+
   return 0;
+  
 }
 
 /* readArray fills an array with values from a file.
