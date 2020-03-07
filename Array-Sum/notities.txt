@@ -1,0 +1,72 @@
+array sum
+
+10k 		=  4.99605e+09
+100k 		=  4.99919e+10
+1m 			=  4.99795e+11
+10m 		=  5.00059e+12
+
+elasped time zonder parallele variant
+
+10k 		=  0.000064 sec
+100k 		=  0.000255 sec
+1m 			=  0.002807 sec
+10m 		=  0.029131 sec
+
+na threading:
+10k 		=  
+100k 		=  
+1m 			=  
+10m 		=  
+
+------------------
+Master-Worker	  
+Parallel For-loop 
+Reduction patronen
+------------------
+A normal program can be converted to openMP by adding one of the following lines:
+		#pragma omp parallel
+		#pragma omp parallel num_threads(5) 
+
+		OR 
+		omp_set_num_threads(3);
+		#pragma omp parallel
+
+This is called parallel construct. The following lines will be 
+executed by multiple threads. 
+
+pointers in c https://www.youtube.com/watch?v=mw1qsMieK5c 
+------------------
+Master			  |
+------------------
+#pragma omp parallel private(id, numThreads)
+    {
+        id = omp_get_thread_num();
+        numThreads = omp_get_num_threads();
+
+        if ( id == 0 ) {  // thread with ID 0 is master
+            printf("Greetings from the master, # %d of %d threads\n",
+			    id, numThreads);
+------------------------------------------------------------------------
+
+------------------
+parallel for-loop |
+------------------
+#pragma omp parallel for private(id, i) 
+    for (i = 0; i < REPS; i++) {
+        id = omp_get_thread_num();
+        printf("Thread %d performed iteration %d\n", 
+                 id, i);
+------------------------------------------------------------------------
+
+------------------
+Reduction pattern |
+------------------
+int parallelSum(int* a, int n) {
+   int sum = 0;
+   int i;
+  #pragma omp parallel for reduction(+:sum)
+   for (i = 0; i < n; i++) {
+      sum += a[i];
+   }
+   return sum;
+------------------------------------------------------------------------
