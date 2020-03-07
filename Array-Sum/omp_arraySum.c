@@ -39,9 +39,9 @@ int main(int argc, char * argv[])
   readArray(argv[1], &a, &howMany);
   
   for (int i = 0; i < sizeT; i++) {
-      omp_set_num_threads(threads[i]);
+      omp_set_num_threads(threads[i]); // first set amount of threads
 
-      #pragma omp parallel
+      #pragma omp parallel // then use omp parallel
 
       start = omp_get_wtime(); 
       sum = parallelSumArray(a, howMany);
