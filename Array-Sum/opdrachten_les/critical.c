@@ -27,10 +27,10 @@ int main() {
     #pragma omp parallel for
     for (i = 0; i < REPS; i++) {
         // #pragma omp atomic                          // A1
-       #pragma omp critical                      // B1a
-       {                                         // B1b
+      //  #pragma omp critical                      // B1a
+      //  {                                         // B1b
         balance += 10.0;
-       }                                         // B1c
+      //  }                                         // B1c
     }
 
     printf("\nAfter %d $10 deposits, your balance is %0.2f\n", 
@@ -40,10 +40,10 @@ int main() {
     #pragma omp parallel for
     for (i = 0; i < REPS; i++) {
         // #pragma omp atomic                          // A2
-       #pragma omp critical                      // B2a
-       {                                         // B2b
+      //  #pragma omp critical                      // B2a
+      //  {                                         // B2b
         balance -= 10.0;
-       }                                         // B2c
+      //  }                                         // B2c
   }
 
     // balance should be zero

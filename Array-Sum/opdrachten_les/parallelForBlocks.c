@@ -46,4 +46,3 @@ int main(int argc, char** argv) {
 // Thread 0 performed iteration 1
 // Thread 0 performed iteration 2
 // Thread 1 performed iteration 5
-
