@@ -4,6 +4,8 @@ import math
 from timeit import default_timer as timer
 from typing import List
 import matplotlib.pyplot as plt
+from matplotlib.colors import ListedColormap
+
 
 """
 Merge sort is een efficient sorteeralgoritme. Dit algoritme neemt een array, 
@@ -123,8 +125,10 @@ def plot_me(processes: List[int], result: List[int]):
     Plot all the results of the time execution
     using the matplotlib library
     """
-    plt.scatter(processes, result, label=f"Processes: {processes}; Duration: {result}")
-    plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left', borderaxespad=0.)
+    plt.scatter(processes, result)
+    plt.xlabel("Amount of threads used")
+    plt.ylabel("Elapsed time in second(s)")
+    # plt.legend(loc="upper left")
     plt.savefig('parallel_programming_merge_sort.png')
     plt.show()
 
