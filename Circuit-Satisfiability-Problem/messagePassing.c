@@ -40,3 +40,6 @@ int main(int argc, char** argv) {
     return 0;
 }
 
+// output 2 processors 
+// Process 0 of 2 computed 0.000000 and received 1.000000
+// Process 1 of 2 computed 1.000000 and received 0.000000

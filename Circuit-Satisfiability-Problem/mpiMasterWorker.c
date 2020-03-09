@@ -1,6 +1,9 @@
 /* masterServer.c
  * ... illustrates the basic master-worker pattern in MPI ...
  * Huib Aldewereld, HU, HPP, 2020
+ * 
+ * compile: mpicc -o main mpimasterworker.c 
+ * run: mpirun -np 2 ./main
  */
 
 #include <stdio.h>
@@ -27,4 +30,6 @@ int main(int argc, char** argv) {
   return 0;
 }
 
-
+// output
+// Greetings from the master, # 0 (mbp-van-sinem.home) of 2 processes
+// Greetings from a worker, # 1 (mbp-van-sinem.home) of 2 processes

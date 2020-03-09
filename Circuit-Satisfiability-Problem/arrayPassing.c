@@ -1,6 +1,9 @@
 /* arrayPassing.c
  * ... illustrates using MPI_Send() and MPI_Recv() commands on arrays...
  * Huib Aldewereld, HU, HPP, 2020
+ * 
+ * mpicc -o main arraypassing.c
+ * mpirun -np 2 ./main 
  */
 
 #include <stdio.h>   // printf()
@@ -50,3 +53,9 @@ int main(int argc, char** argv) {
     return 0;
 }
 
+// output
+// Process 0 of 2 received the message:
+//         Process 1 is on host 'mbp-van-sinem.home'
+
+// Process 1 of 2 received the message:
+//         Process 0 is on host 'mbp-van-sinem.home'

@@ -8,6 +8,8 @@
  * Usage: mpirun -np 4 ./spmd
  *
  * brew install openmpi on mac 
+ * 
+ * folder circuit-satisfiability-problem
  */
 
 #include <stdio.h>

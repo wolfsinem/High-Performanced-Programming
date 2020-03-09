@@ -13,6 +13,16 @@ Om nu (zonder toegang tot een cluster) je MPI-programma lokaal te draaien, type 
 
 Dit start 4 threads op je lokale machine om het programma uit te voeren.
 
+------------------------------------------------
+De generieke vorm voor een MPI send commando is:
+------------------------------------------------
+
+MPI_Send( addressOfFirstValue,
+          numberOfValues,
+          typeOfValues,
+          idOfDestination,
+          messageTag,
+          communicator );
 
 
 
@@ -26,8 +36,7 @@ Dit start 4 threads op je lokale machine om het programma uit te voeren.
 SPMD staat voor Single Program Multiple Data; spmd.c is duidelijk een single program, 
 maar wat is de multiple data die door de processen wordt gebruikt?  
 
-
-
+De hoeveelheid CPU's die worden gebruikt bij het parallel uitvoeren van een programma.
 
 
 -------------------------------------------------------------------------------------------
