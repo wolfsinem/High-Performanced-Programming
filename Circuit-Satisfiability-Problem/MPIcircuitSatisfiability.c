@@ -9,24 +9,38 @@
  *   Extended to 32 bits by Joel C. Adams, Sept 2013.
  *   Adapted for HU-HPP by Huib Aldewereld, 2020.
  * 
- *   compile: mpicc circuitSatisfiability.c -ansi -pedantic -std=c99 -o main
+ *   compile: mpicc MPIcircuitSatisfiability.c -Wall -ansi -pedantic -std=c99 -o main
  *   run: mpirun -np 1 ./main
  */
 
 #include <stdio.h>     // printf()
 #include <limits.h>    // UINT_MAX
+#include <mpi.h>       // include MPI header file
 
 int checkCircuit (int, long);
 
 int main (int argc, char *argv[]) {
-   long i;               // loop variable (64 bits) 
-   int id = 0;           // process id 
-   int count = 0;        // number of solutions 
+   long i;                 // loop variable (64 bits) 
+   int id = 0;             // process id 
+   int count = 0;          // number of solutions 
 
-   printf ("\nProcess %d is checking the circuit...\n", id);
+   double startTime = 0.0; // start of elapsed time
+   double totalTime = 0.0; // total of elapsed time 
 
-   double startTime = 0.0, totalTime = 0.0;
+   int numProcesses = 0;
+
+   printf("\nProcess %d is checking the circuit...\n", id);
+
    startTime = MPI_Wtime();
+
+   // /* MPI_init       =  Initialize the MPI environment
+   //  * MPI_Comm_rank  =  Get the rank of the process
+   //  * MPI_Comm_size  =  Get the number of processes
+   //  */
+
+   MPI_Init(&argc, &argv);
+   MPI_Comm_rank(MPI_COMM_WORLD, &id);
+   MPI_Comm_size(MPI_COMM_WORLD, &numProcesses);
 
    for (i = 0; i <= UINT_MAX; i++) {
       count += checkCircuit (id, i);
@@ -37,8 +51,8 @@ int main (int argc, char *argv[]) {
 
    printf ("Process %d finished.\n", id);
    fflush (stdout);
-
    printf("\nA total of %d solutions were found.\n\n", count);
+
    return 0;
 }
 
