@@ -129,16 +129,15 @@ Hoe verschilt het masterWorker.c programma zich van het spmd.c programma?
  Process 0 finished in time 1078,727400 seconds.
  A total of 81 solutions were found.
 
-
   --------
  | DEEL 2 |
   --------
 
--np 1 
-
-
-
 -np 2
+
+Process 1 finished in time 144.607509 seconds with a total of: 54 solutions
+Process 0 finished in time 149.233584 seconds with a total of: 27 solutions
+Total sum = 81
 
 
 

@@ -57,11 +57,20 @@ int main (int argc, char *argv[]) {
     */ 
 
    int global_sum = 0;
-   MPI_Reduce(&local_sum, &global_sum, 1, MPI_INT, MPI_SUM, 0,MPI_COMM_WORLD);
+   MPI_Reduce(&local_sum, &global_sum, 1, MPI_INT, MPI_SUM, 0,MPI_COMM_WORLD); 
    
-   fflush (stdout);
-
+   // clean up
+   MPI_Barrier(MPI_COMM_WORLD);
    MPI_Finalize();
+
+   totalTime = MPI_Wtime() - startTime;
+   if (id == 0) {
+         printf("Total sum = %d\n", global_sum);
+         printf("Total time = %d\n", totalTime); 
+}
+   // fflush (stdout);
+   
+
    return 0;
 }
 
