@@ -22,13 +22,12 @@ int checkCircuit (int, long);
 int main (int argc, char *argv[]) {
    long i;                                                     // loop variable (64 bits) 
    int id = 0;                                                 // process id 
-   int local_sum = 0;                                           // number of solutions 
-
-   double startTime = 0.0, totalTime = 0.0;                    // start and total of elapsed time
+   int local_sum = 0;                                          // number of solutions 
 
    unsigned int max_pr = UINT_MAX;                             // maximum value for an object of type unsigned int 
    int numProcesses = 0;                                       // amount of processes being used
    
+   double startTime = 0.0, totalTime = 0.0;                    // start and total of elapsed time
    startTime = MPI_Wtime();
 
    /* Using parallelLoopSlices.c as an example in this part
@@ -56,7 +55,7 @@ int main (int argc, char *argv[]) {
     * https://mpitutorial.com/tutorials/mpi-reduce-and-allreduce/
     */ 
 
-   int global_sum = 0;
+   int global_sum = 0; // number of solutions 
    MPI_Reduce(&local_sum, &global_sum, 1, MPI_INT, MPI_SUM, 0,MPI_COMM_WORLD); 
    
    // clean up
@@ -66,7 +65,7 @@ int main (int argc, char *argv[]) {
    totalTime = MPI_Wtime() - startTime;
    if (id == 0) {
          printf("Total sum = %d\n", global_sum);
-         printf("Total time = %d\n", totalTime); 
+         printf("Total time = %f\n", totalTime); 
 }
    // fflush (stdout);
    
