@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "thread": "c"
+    },
+    "python.pythonPath": "/Library/Frameworks/Python.framework/Versions/3.8/bin/python3",
+
+    "editor.tokenColorCustomizations": {
+        "comments": "#c25789"
+    },
+}
