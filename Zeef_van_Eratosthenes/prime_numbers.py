@@ -1,3 +1,4 @@
+# coding=utf-8
 """
 --THEORIE--
 Zeef van Eratosthenes
@@ -28,4 +29,31 @@ note: een priemgetal is een getal groter dan 1 dat slechts deelbaar is door zich
 
 4) De indexen van de niet gemarkeerde elementen in de zeef zijn priemgetallen.
 """
+import time
 
+start_time = time.time()
+
+# sequentiele variant van het algoritme
+def priemgetal(maximum):
+    # Array met getallen vanaf 2 t/m een maximum
+    priem = []
+    # maximum = int(input("Voer een getal voor het maximum in: "))
+    for i in range(2, maximum):
+        priem.append(i)
+    # print(priem)
+
+    # Loop door de lijst 
+    for j in priem:
+        for i in priem:
+            if i % j == 0:
+                if i != j:
+                    priem.remove(i)
+
+    # print(priem)
+    return priem
+
+priemgetallen = priemgetal(100)
+total_time = time.time() - start_time
+
+print("Sequential algorithm took: {:.5f} second(s)".format(total_time))
+print("List of prime numbers: {}".format(priemgetallen))
