@@ -58,3 +58,11 @@ total_time = time.time() - start_time
 print("Totaal: {}".format(count))
 print("Lijst van alle priemgetallen: {}".format(priemgetallen))
 print("Sequential algorithm took: {:.5f} second(s)".format(total_time))
+
+# Verifieer de eeste n priemgetallen: https://miniwebtool.com/first-n-prime-numbers/?number=10 
+echte_priemgetallen = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+pg_2 = priemgetal(30)[0]
+if echte_priemgetallen == pg_2:
+    print("De priemgetallen zijn geverifieerd")
+else: 
+    print("De priemgetallen zijn niet identiek, wijzig het programma")
