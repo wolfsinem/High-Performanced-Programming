@@ -28,32 +28,33 @@ note: een priemgetal is een getal groter dan 1 dat slechts deelbaar is door zich
     3.2) Vind de kleinste index groter dan k die niet gemarkeerd is, en zet k op deze waarde.
 
 4) De indexen van de niet gemarkeerde elementen in de zeef zijn priemgetallen.
+
+compile for mp: mpiexec -n 1 python3 prime_numbers.py
 """
 import time
 
 start_time = time.time()
 
-# sequentiele variant van het algoritme
 def priemgetal(maximum):
-    # Array met getallen vanaf 2 t/m een maximum
-    priem = []
-    # maximum = int(input("Voer een getal voor het maximum in: "))
-    for i in range(2, maximum):
+    priem = [] # array met alle priemgetallen vanaf 2 t/m een maximum
+    count = 0 # totaal aantal priemgetallen
+    k = 2 
+
+    for i in range(k, maximum):
         priem.append(i)
-    # print(priem)
 
     # Loop door de lijst 
     for j in priem:
+        count += 1
         for i in priem:
             if i % j == 0:
                 if i != j:
                     priem.remove(i)
+    return priem, count
 
-    # print(priem)
-    return priem
-
-priemgetallen = priemgetal(100)
+priemgetallen, count = priemgetal(100)
 total_time = time.time() - start_time
 
+print("Totaal: {}".format(count))
+print("Lijst van alle priemgetallen: {}".format(priemgetallen))
 print("Sequential algorithm took: {:.5f} second(s)".format(total_time))
-print("List of prime numbers: {}".format(priemgetallen))
