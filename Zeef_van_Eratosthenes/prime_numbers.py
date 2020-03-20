@@ -22,14 +22,12 @@ note: een priemgetal is een getal groter dan 1 dat slechts deelbaar is door zich
 
 2) Aangezien 1 geen priem is, zetten we k op 2.
 
-3) Loop totdat k2 > N:
+3) Loop totdat k^2 > N:
     3.1) In de zeef, markeer alle elementen op de indexen die een veelvoud zijn van k tussen 
          k2 en N (inclusief).
     3.2) Vind de kleinste index groter dan k die niet gemarkeerd is, en zet k op deze waarde.
 
 4) De indexen van de niet gemarkeerde elementen in de zeef zijn priemgetallen.
-
-compile for mp: mpiexec -n 1 python3 prime_numbers.py
 """
 import time
 
@@ -52,11 +50,11 @@ def priemgetal(maximum):
                     priem.remove(i)
     return priem, count
 
-priemgetallen, count = priemgetal(100)
+priemgetallen, count = priemgetal(1000000)
 total_time = time.time() - start_time
 
 print("Totaal: {}".format(count))
-print("Lijst van alle priemgetallen: {}".format(priemgetallen))
+# print("Lijst van alle priemgetallen: {}".format(priemgetallen))
 print("Sequential algorithm took: {:.5f} second(s)".format(total_time))
 
 # Verifieer de eeste n priemgetallen: https://miniwebtool.com/first-n-prime-numbers/?number=10 
